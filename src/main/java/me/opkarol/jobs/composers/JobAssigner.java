@@ -73,4 +73,5 @@ public class JobAssigner {
         ALREADY_HAS_JOB,
         SUCCESSFUL,
     }
+
 }
