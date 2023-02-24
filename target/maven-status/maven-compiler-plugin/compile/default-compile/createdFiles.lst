@@ -1,0 +1,16 @@
+me\opkarol\experience\ExperienceDatabase.class
+me\opkarol\effects\ParticleManager.class
+me\opkarol\jobs\database\ObjectivesDatabase.class
+me\opkarol\jobs\database\ActiveJobsDatabase.class
+me\opkarol\jobs\composers\JobCreator.class
+me\opkarol\jobs\JobAction.class
+me\opkarol\jobs\factories\ActionFactory.class
+me\opkarol\experience\Experience.class
+me\opkarol\jobs\composers\JobAssigner.class
+me\opkarol\commands\JobCommand.class
+me\opkarol\jobs\JobTask.class
+me\opkarol\jobs\factories\JobFactory.class
+me\opkarol\OpJobs.class
+me\opkarol\jobs\composers\JobAssigner$ASSIGN_RESULT.class
+me\opkarol\jobs\Job.class
+me\opkarol\jobs\JobListener.class
