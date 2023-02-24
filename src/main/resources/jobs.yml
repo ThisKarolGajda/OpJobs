@@ -1,0 +1,8 @@
+MINE:
+  display: "Górnik"
+  objectives:
+    # BLOCK_NAME: TASK DIFFICULTY
+    # With each level the task difficulty increases, so you have to mine more tasks (it fills out the task difficulty)
+    DIAMOND_ORE: 50
+    STONE: 1
+    DIAMOND_BLOCK: 500

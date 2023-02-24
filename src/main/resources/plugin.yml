@@ -1,0 +1,7 @@
+name: OpJobs
+version: ${project.version}
+main: me.opkarol.OpJobs
+author: OpKarol
+api-version: "1.13"
+load: POSTWORLD
+softdepend:
