@@ -1,8 +1,33 @@
 MINE:
-  display: "Górnik"
+  display: Górnik
   objectives:
     # BLOCK_NAME: TASK DIFFICULTY
     # With each level the task difficulty increases, so you have to mine more tasks (it fills out the task difficulty)
+    # Level brackets:
+    # 1-9Lvl: level * 21
+    # 11-99Lvl: level * 22
+    # 101-499Lvl: level * 23
+    # 500-999Lvl: level * 24
+    # 1000+Lvl: level * 25
+    ACACIA_LOG: 1
+    BLACK_WOOL: 10
+    ACACIA_PLANKS: 100
     DIAMOND_ORE: 50
     STONE: 1
-    DIAMOND_BLOCK: 500
+    DIAMOND_BLOCK: 480|Blok Diamentu
+  events:
+    - class org.bukkit.event.block.BlockBreakEvent
+  event_display: "WYKOP"
+  head_icon: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzIzNWYxNmVkNDQ0MGNjMjllY2U4ZjQzMzNkMDE3NTU0ODMyMWYwODVlM2QxNGI3Y2IxZWViNmE0ZWUzNWIwMSJ9fX0=
+
+# HARVEST:
+#   display: "Farmer"
+#
+# CRAFT:
+#   display: "Rzemieślnik"
+#
+# SMELT:
+#   display: "Hutnik"
+#
+# FISH:
+#   display: "Wędkarz"

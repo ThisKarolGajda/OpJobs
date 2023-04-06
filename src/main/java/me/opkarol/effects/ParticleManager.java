@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 
 public class ParticleManager {
 
-    public static void particleCircleSpellEffect(Player player) {
+    public static void particleInCircleEffect(Player player, Particle particle) {
         Location location = player.getLocation();
         new OpRunnable(r -> {
             for (int degree = 0; degree < 360; degree++) {
@@ -15,7 +15,7 @@ public class ParticleManager {
                 double x = Math.cos(radians);
                 double z = Math.sin(radians);
                 location.add(x, 0, z);
-                player.spawnParticle(Particle.SPELL, location, 3);
+                player.spawnParticle(particle, location, 3);
                 location.subtract(x, 0, z);
             }
         }).runTaskAsynchronously();

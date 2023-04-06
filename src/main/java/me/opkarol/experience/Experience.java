@@ -1,6 +1,7 @@
 package me.opkarol.experience;
 
-import me.opkarol.opc.OpAPI;
+import me.opkarol.opc.api.utils.StringUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
@@ -15,28 +16,22 @@ public final class Experience implements Serializable {
 
     public int calculateExperiencePointsForCurrentLevel() {
         // POINTS BRACKETS (required for each level):
-        // 1-9Lvl: level * 11
-        // 10Lvl: 100
-        // 11-99Lvl: level * 12
-        // 100Lvl: 1_200
-        // 101-999Lvl: level * 14
-        // 1000Lvl: 14_000
-        // 1000+Lvl: level * 15
+        // 1-9Lvl: level * 21
+        // 11-99Lvl: level * 22
+        // 101-499Lvl: level * 23
+        // 500-999Lvl: level * 24
+        // 1000+Lvl: level * 25
 
         if (level < 10) {
-            return level * 11;
-        } else if (level == 10) {
-            return 100;
-        } else if (level < 100) {
-            return level * 12;
-        } else if (level == 100) {
-            return 1200;
+            return level * 21;
+        }   else if (level < 100) {
+            return level * 22;
+        } else if (level < 500) {
+            return level * 23;
         } else if (level < 1000) {
-            return level * 14;
-        } else if (level == 1000) {
-            return 14000;
+            return level * 24;
         } else {
-            return level * 15;
+            return level * 25;
         }
     }
 
@@ -52,12 +47,10 @@ public final class Experience implements Serializable {
         return experience;
     }
 
-
     public void addExperience(int experiencePoints) {
         int current = experiencePoints;
         while (true) {
-            int requiredPoints = calculateRequiredPointsForNextLevel();
-            OpAPI.logInfo(current + " - " + requiredPoints + " - " + level + " - " + experience);
+            int requiredPoints = calculateExperiencePointsForCurrentLevel();
             if (current > requiredPoints) {
                 level++;
                 current = current - requiredPoints;
@@ -66,6 +59,24 @@ public final class Experience implements Serializable {
                 break;
             }
         }
+    }
+
+    public String getPercentage() {
+        double number = experience * 100d / calculateExperiencePointsForCurrentLevel();
+        number = Math.round(number * 100);
+        return number/100 + "%";
+    }
+
+    @Override
+    public String toString() {
+        //10,10
+        return level + "," + experience;
+    }
+
+    public Experience(@NotNull String fromString) {
+        String[] split = fromString.split(",");
+        level = StringUtil.getIntFromString(split[0]);
+        experience = StringUtil.getIntFromString(split[1]);
     }
 }
 

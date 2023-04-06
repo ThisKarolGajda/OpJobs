@@ -5,8 +5,6 @@ import java.io.Serializable;
 public abstract class JobAction implements Serializable {
     private int objectivesCompleted;
 
-    public abstract JobTask getJobTask();
-
     public abstract Object getObjective();
 
     public abstract int getObjectiveAmount();

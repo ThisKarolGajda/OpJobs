@@ -98,7 +98,21 @@
         <dependency>
             <groupId>com.github.ThisKarolGajda</groupId>
             <artifactId>OpC</artifactId>
-            <version>1.5.7.3</version>
+            <version>6239655315</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ThisKarolGajda.Lamp</groupId>
+            <artifactId>common</artifactId>
+            <version>15dce0474a</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ThisKarolGajda.Lamp</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>15dce0474a</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

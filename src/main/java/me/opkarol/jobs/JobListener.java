@@ -13,27 +13,28 @@ import java.util.UUID;
 public class JobListener {
 
     public JobListener(ActiveJobsDatabase jobsDatabase) {
-        EventRegister.registerEvent(BlockBreakEvent.class, EventPriority.LOW, event -> {
+        EventRegister.registerEvent(BlockBreakEvent.class, EventPriority.HIGH, event -> {
+            if (event.isCancelled()) {
+                return;
+            }
+
             Player player = event.getPlayer();
             UUID uuid = player.getUniqueId();
-
             Optional<Job> optional = jobsDatabase.getMap().getByKey(uuid);
             if (optional.isEmpty()) {
                 // Player doesn't currently have a job
                 return;
             }
 
-
             boolean completedAnyAction = false;
             Job job = optional.get();
-
             for (JobAction action : job.getJobActions()) {
-                if (action.isActionCompleted()) {
+                if (action.isActionCompleted() || job.getProfile().event() == null) {
                     continue;
                 }
 
                 // Check if the action is the same as the event
-                if (!action.getJobTask().getClasses().contains(event.getClass())) {
+                if (!job.getProfile().event().events().contains(event.getClass().toString())) {
                     continue;
                 }
 
@@ -46,9 +47,12 @@ public class JobListener {
 
                 // Remove broke block and add point to objective
                 action.incrementObjectiveAmount();
+                if (action.isActionCompleted()) {
+                    JobAssigner.informCompletingAction(player, action);
+                }
                 event.setDropItems(false);
                 completedAnyAction = true;
-                JobAssigner.advanceInObjective(player, action);
+                JobAssigner.informAdvancingAction(player, action);
             }
             // Check if job is completed
             if (completedAnyAction) {

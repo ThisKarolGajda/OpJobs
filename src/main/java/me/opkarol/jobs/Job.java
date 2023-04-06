@@ -7,16 +7,16 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
-public interface Job extends Serializable {
+public abstract class Job implements Serializable {
 
-    JobTask getType();
+    public abstract String getJobName();
 
     @NotNull
-    List<JobAction> getJobActions();
+    public abstract List<JobAction> getJobActions();
 
-    int getPoints();
+    public abstract int getPoints();
 
-    default boolean hasCompletedAllActions() {
+    boolean hasCompletedAllActions() {
         for (JobAction jobAction : getJobActions()) {
             if (!jobAction.isActionCompleted()) {
                 return false;
@@ -25,9 +25,11 @@ public interface Job extends Serializable {
         return true;
     }
 
-    default void tryToCompleteJob(Player player) {
+    public void tryToCompleteJob(Player player) {
         if (hasCompletedAllActions()) {
             JobAssigner.completePlayerJob(player);
         }
     }
+
+    public abstract JobProfile getProfile();
 }

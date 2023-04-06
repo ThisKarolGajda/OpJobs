@@ -1,30 +1,61 @@
 package me.opkarol.commands;
 
+import me.opkarol.OpJobs;
 import me.opkarol.jobs.Job;
-import me.opkarol.jobs.JobTask;
 import me.opkarol.jobs.composers.JobAssigner;
 import me.opkarol.jobs.composers.JobCreator;
+import me.opkarol.jobs.database.ActiveJobsDatabase;
+import me.opkarol.jobs.inventories.JobProgressInventory;
+import me.opkarol.jobs.inventories.MainJobInventory;
+import me.opkarol.opc.api.gui.holder.InventoriesHolder;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import revxrsal.commands.annotation.Command;
 import revxrsal.commands.annotation.DefaultFor;
 import revxrsal.commands.annotation.Subcommand;
 
+import static me.opkarol.jobs.inventories.JobExperienceInventory.openExperienceInventory;
+
 @Command("praca")
 public class JobCommand {
+    private final InventoriesHolder inventoriesHolder;
+    private final ActiveJobsDatabase activeJobsDatabase = OpJobs.getInstance().getActiveJobsDatabase();
+
+    public JobCommand(InventoriesHolder inventoriesHolder) {
+        this.inventoriesHolder = inventoriesHolder;
+    }
 
     @DefaultFor("praca")
     public void jobMain(Player player) {
+        new MainJobInventory(player);
         // open main gui
     }
 
-    @Subcommand("szukac")
+    @Subcommand("szukaj")
     public void jobSearch(Player player) {
-        // open job search gui
+        inventoriesHolder.getInventory("JobChooseInventory").ifPresent(holder -> {
+            holder.getInventory().openInventory(player);
+        });
+    }
+
+    @Subcommand("poziomy")
+    public void jobExperienceLevels(@NotNull Player player) {
+        openExperienceInventory(player, inventoriesHolder);
     }
 
     @Subcommand("test")
     public void randomJobTest(Player player) {
-        Job job = JobCreator.createRandomJobForPlayer(player, JobTask.MINE);
+        Job job = JobCreator.createRandomJobForPlayerWithSpecificProfile(player);
         JobAssigner.assignJobToPlayer(player, job);
+    }
+
+    @Subcommand("postep")
+    public void jobProgress(@NotNull Player player) {
+        if (!activeJobsDatabase.getMap().containsKey(player.getUniqueId())) {
+            OpJobs.getInstance().sendMappedMessage(player, "PLAYER_NOT_HAVE_JOB");
+            return;
+        }
+        new JobProgressInventory(player)
+                .getInventory().openInventory(player);
     }
 }

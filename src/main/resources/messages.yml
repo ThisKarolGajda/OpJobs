@@ -1,2 +1,6 @@
-ADVANCE_IN_OBJECTIVE_ACTIONBAR_MESSAGE: "Wykopano %block_type%, %amount%/%amount_left%!"
-COMPLETE_JOB_ACTIONBAR_MESSAGE: "Ukończono pracę!"
+ADVANCED_IN_OBJECTIVE: "#<5389FD>☁ &7Wykopano %block_type%, %amount%/%amount_left%!"
+COMPLETED_OBJECTIVE: "#<5389FD>☁ &7Ukończono %block_type%!"
+COMPLETED_JOB: "#<5389FD>☁ &7Ukończono pracę!"
+PLAYER_NOT_HAVE_JOB: "&cNie masz aktywnej pracy!"
+ASSIGNED_NEW_JOB: "#<5389FD>☁ &7Przypisano nową pracę! Zobacz jej postęp w #<5389FD>/praca postep&7!"
+ALREADY_HAS_JOB: "&cMasz już aktywną pracę!"
