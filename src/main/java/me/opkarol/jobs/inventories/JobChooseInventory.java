@@ -17,7 +17,7 @@ import java.util.List;
 
 public class JobChooseInventory extends InventoryHolder {
     public JobChooseInventory() {
-        super(27, "#<5389FD>&lWybierz pracę");
+        super(45, "#<5389FD>&lWybierz pracę");
     }
 
     @Override
@@ -40,7 +40,7 @@ public class JobChooseInventory extends InventoryHolder {
             inventoryItems.add(item);
         }
 
-        BlocksLayout.setInventoryBlocks(inventory, inventoryItems);
+        BlockLayout27.setInventoryBlocks(inventory, inventoryItems, 9);
         inventory.setAllUnused(0, getBlankItem());
         inventory.build();
     }

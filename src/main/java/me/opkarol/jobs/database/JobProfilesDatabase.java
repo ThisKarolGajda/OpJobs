@@ -4,13 +4,14 @@ import me.opkarol.OpJobs;
 import me.opkarol.jobs.JobEvent;
 import me.opkarol.jobs.JobObjective;
 import me.opkarol.jobs.JobProfile;
-import me.opkarol.opc.OpAPI;
 import me.opkarol.opc.api.file.Configuration;
 import me.opkarol.opc.api.list.OpList;
 import me.opkarol.opc.api.tools.HeadManager;
 import me.opkarol.opc.api.utils.StringUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class JobProfilesDatabase extends Configuration {
     private final OpList<JobProfile> profiles = new OpList<>();
@@ -40,13 +41,13 @@ public class JobProfilesDatabase extends Configuration {
                     objectives.add(new JobObjective(objective, points));
                 }
             });
+            // Sort based on amount of points given
             objectives.sort((o1, o2) -> o2.getPoints() - o1.getPoints());
             List<String> events = getConfig().getStringList(job + ".events");
             String eventDisplay = getString(job + ".event_display");
             JobEvent event = new JobEvent(events, eventDisplay);
             String icon = getString(job + ".head_icon");
-            OpAPI.logInfo(Arrays.toString(events.toArray()));
-            this.profiles.add(new JobProfile(job, displayName, objectives, event, HeadManager.getHeadFromTexture(icon)));
+            this.profiles.add(new JobProfile(job, displayName, objectives, event, HeadManager.getHeadFromMinecraftValueUrl(icon)));
         });
     }
 

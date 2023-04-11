@@ -13,6 +13,10 @@ public abstract class JobAction implements Serializable {
         objectivesCompleted++;
     }
 
+    public void incrementObjectiveAmount(int times) {
+        objectivesCompleted += times;
+    }
+
     public boolean isActionCompleted() {
         return objectivesCompleted >= getObjectiveAmount();
     }

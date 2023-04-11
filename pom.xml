@@ -96,9 +96,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.ThisKarolGajda</groupId>
-            <artifactId>OpC</artifactId>
-            <version>6239655315</version>
+            <groupId>me.opkarol</groupId>
+            <artifactId>opc</artifactId>
+            <version>1.1.0</version>
             <scope>compile</scope>
         </dependency>
 
@@ -114,6 +114,18 @@
             <artifactId>bukkit</artifactId>
             <version>15dce0474a</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.Realizedd</groupId>
+            <artifactId>TokenManager</artifactId>
+            <version>3.2.4</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

@@ -1,5 +1,6 @@
 package me.opkarol.jobs;
 
+import me.opkarol.OpJobs;
 import me.opkarol.jobs.composers.JobAssigner;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -31,5 +32,9 @@ public abstract class Job implements Serializable {
         }
     }
 
-    public abstract JobProfile getProfile();
+    public JobProfile getProfile() {
+        return OpJobs.getInstance().getJobProfilesDatabase()
+                .getProfile(getJobName())
+                .orElseThrow();
+    }
 }

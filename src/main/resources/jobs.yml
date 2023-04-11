@@ -1,4 +1,4 @@
-MINE:
+MINER:
   display: Górnik
   objectives:
     # BLOCK_NAME: TASK DIFFICULTY
@@ -18,16 +18,96 @@ MINE:
   events:
     - class org.bukkit.event.block.BlockBreakEvent
   event_display: "WYKOP"
-  head_icon: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzIzNWYxNmVkNDQ0MGNjMjllY2U4ZjQzMzNkMDE3NTU0ODMyMWYwODVlM2QxNGI3Y2IxZWViNmE0ZWUzNWIwMSJ9fX0=
+  head_icon: 29109d2229e073e460d30e5246728b8d8aec464527581c338538b4363eaa4fda
 
-# HARVEST:
-#   display: "Farmer"
-#
-# CRAFT:
-#   display: "Rzemieślnik"
-#
-# SMELT:
-#   display: "Hutnik"
-#
-# FISH:
-#   display: "Wędkarz"
+FARMER:
+  display: "Farmer"
+  objectives:
+    # BLOCK_NAME: TASK DIFFICULTY
+    # With each level the task difficulty increases, so you have to mine more tasks (it fills out the task difficulty)
+    # Level brackets:
+    # 1-9Lvl: level * 21
+    # 11-99Lvl: level * 22
+    # 101-499Lvl: level * 23
+    # 500-999Lvl: level * 24
+    # 1000+Lvl: level * 25
+    SWEET_BERRIES: 1
+  events:
+    - class org.bukkit.event.block.BlockBreakEvent
+    - class org.bukkit.event.player.PlayerHarvestBlockEvent
+  event_display: "ZBIERZ"
+  head_icon: fea30b2b041d3471c7d02e5dd14276831c9f48fd78a1f3f0c13676c5306a51ac
+
+
+CRAFTER:
+  display: "Rzemieślnik"
+  objectives:
+    # BLOCK_NAME: TASK DIFFICULTY
+    # With each level the task difficulty increases, so you have to mine more tasks (it fills out the task difficulty)
+    # Level brackets:
+    # 1-9Lvl: level * 21
+    # 11-99Lvl: level * 22
+    # 101-499Lvl: level * 23
+    # 500-999Lvl: level * 24
+    # 1000+Lvl: level * 25
+    STONE_BRICKS: 1
+  events:
+    - class org.bukkit.event.inventory.CraftItemEvent
+  event_display: "WYTWÓRZ"
+  head_icon: 2bfbde96ecdd0456fc76fee667b9dd4f3304956aa4fdea5c8c7dba77f3041a15
+
+SMELTER:
+  display: "Hutnik"
+  objectives:
+    # BLOCK_NAME: TASK DIFFICULTY
+    # With each level the task difficulty increases, so you have to mine more tasks (it fills out the task difficulty)
+    # Level brackets:
+    # 1-9Lvl: level * 21
+    # 11-99Lvl: level * 22
+    # 101-499Lvl: level * 23
+    # 500-999Lvl: level * 24
+    # 1000+Lvl: level * 25
+    STONE: 1
+  events:
+    - class org.bukkit.event.inventory.InventoryClickEvent
+  event_display: "PRZETOP"
+  head_icon: 77a49a9a6195bfea929f6bb8d1735659d1d1ce16b202c99465f9f465643081bb
+
+LUMBERJACK:
+  display: "Drwal"
+  objectives:
+    # BLOCK_NAME: TASK DIFFICULTY
+    # With each level the task difficulty increases, so you have to mine more tasks (it fills out the task difficulty)
+    # Level brackets:
+    # 1-9Lvl: level * 21
+    # 11-99Lvl: level * 22
+    # 101-499Lvl: level * 23
+    # 500-999Lvl: level * 24
+    # 1000+Lvl: level * 25
+    ACACIA_LOG: 1
+    BLACK_WOOL: 10
+    ACACIA_PLANKS: 100
+    DIAMOND_ORE: 50
+    STONE: 1
+    DIAMOND_BLOCK: 480|Blok Diamentu
+  events:
+    - class org.bukkit.event.block.BlockBreakEvent
+  event_display: "ZETNIJ"
+  head_icon: c3a96e954bd254a91a415520446cf78a88ce3ef5398673bce4b84775334cdd38
+
+FISHER:
+  display: "Wędkarz"
+  objectives:
+    # BLOCK_NAME: TASK DIFFICULTY
+    # With each level the task difficulty increases, so you have to mine more tasks (it fills out the task difficulty)
+    # Level brackets:
+    # 1-9Lvl: level * 21
+    # 11-99Lvl: level * 22
+    # 101-499Lvl: level * 23
+    # 500-999Lvl: level * 24
+    # 1000+Lvl: level * 25
+    COD: 1
+  events:
+    - class org.bukkit.event.player.PlayerFishEvent
+  event_display: "ZŁÓW"
+  head_icon: 60eecb1c80c76fa46de022dd6ad503ddbecb11936c29f9d0edde866e3510a698

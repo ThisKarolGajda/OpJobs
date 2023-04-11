@@ -1,6 +1,7 @@
 package me.opkarol.experience;
 
 import me.opkarol.opc.api.utils.StringUtil;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
@@ -51,7 +52,7 @@ public final class Experience implements Serializable {
         int current = experiencePoints;
         while (true) {
             int requiredPoints = calculateExperiencePointsForCurrentLevel();
-            if (current > requiredPoints) {
+            if (current >= requiredPoints) {
                 level++;
                 current = current - requiredPoints;
             } else {
@@ -61,15 +62,16 @@ public final class Experience implements Serializable {
         }
     }
 
-    public String getPercentage() {
+    public @NotNull String getPercentage() {
         double number = experience * 100d / calculateExperiencePointsForCurrentLevel();
         number = Math.round(number * 100);
         return number/100 + "%";
     }
 
+    @Contract(pure = true)
     @Override
-    public String toString() {
-        //10,10
+    public @NotNull String toString() {
+        //[level:]10,[experience:]10
         return level + "," + experience;
     }
 

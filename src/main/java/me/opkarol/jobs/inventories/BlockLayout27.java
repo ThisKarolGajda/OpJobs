@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BlocksLayout {
+public class BlockLayout27 {
     private static final OpMap<Integer, List<Integer>> MAP = new OpMap<>();
 
     static {
@@ -29,12 +29,29 @@ public class BlocksLayout {
         return MAP.getOrDefault(size, new ArrayList<>());
     }
 
-    public static void setInventoryBlocks(OpInventory inventory, @NotNull List<InventoryItem> list) {
+    public static void setInventoryBlocks(@NotNull OpInventory inventory, @NotNull List<InventoryItem> list) {
+        int inventorySize = inventory.getInventoryHolder().getInventorySlots();
         int listSize = list.size();
         List<Integer> integerList = getBlocksLayout(listSize);
         for (int i = 0; i < listSize; i++) {
+            if (i >= inventorySize) {
+                return;
+            }
             InventoryItem item = list.get(i);
             inventory.set(item, integerList.get(i));
+        }
+    }
+
+    public static void setInventoryBlocks(@NotNull OpInventory inventory, @NotNull List<InventoryItem> list, int moveBy) {
+        int inventorySize = inventory.getInventoryHolder().getInventorySlots();
+        int listSize = list.size();
+        List<Integer> integerList = getBlocksLayout(listSize);
+        for (int i = 0; i < listSize; i++) {
+            if (i >= inventorySize) {
+                return;
+            }
+            InventoryItem item = list.get(i);
+            inventory.set(item, integerList.get(i) + moveBy);
         }
     }
 }

@@ -22,7 +22,7 @@ public class JobProgressInventory implements IInventoryHolder {
     private final OpInventory inventory;
 
     public JobProgressInventory(@NotNull Player player) {
-        this.inventory = new OpInventory(new InventoryFactory(27, "#<5389FD>&lPostęp"));
+        this.inventory = new OpInventory(new InventoryFactory(45, "#<5389FD>&lPostęp"));
 
         ActiveJobsDatabase ACTIVE_JOBS_DATABASE = OpJobs.getInstance().getActiveJobsDatabase();
         ACTIVE_JOBS_DATABASE.getMap().getByKey(player.getUniqueId()).ifPresent(job -> {
@@ -42,7 +42,7 @@ public class JobProgressInventory implements IInventoryHolder {
                 }
                 inventoryItems.add(item);
             }
-            BlocksLayout.setInventoryBlocks(inventory, inventoryItems);
+            BlockLayout27.setInventoryBlocks(inventory, inventoryItems, 9);
         });
 
         inventory.setAllUnused(0, getBlankItem());

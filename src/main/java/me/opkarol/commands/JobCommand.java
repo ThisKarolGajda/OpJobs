@@ -6,7 +6,7 @@ import me.opkarol.jobs.composers.JobAssigner;
 import me.opkarol.jobs.composers.JobCreator;
 import me.opkarol.jobs.database.ActiveJobsDatabase;
 import me.opkarol.jobs.inventories.JobProgressInventory;
-import me.opkarol.jobs.inventories.MainJobInventory;
+import me.opkarol.jobs.inventories.JobMainInventory;
 import me.opkarol.opc.api.gui.holder.InventoriesHolder;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -27,15 +27,12 @@ public class JobCommand {
 
     @DefaultFor("praca")
     public void jobMain(Player player) {
-        new MainJobInventory(player);
-        // open main gui
+        new JobMainInventory(player);
     }
 
-    @Subcommand("szukaj")
+    @Subcommand("wybierz")
     public void jobSearch(Player player) {
-        inventoriesHolder.getInventory("JobChooseInventory").ifPresent(holder -> {
-            holder.getInventory().openInventory(player);
-        });
+        inventoriesHolder.getInventory("JobChooseInventory").ifPresent(holder -> holder.getInventory().openInventory(player));
     }
 
     @Subcommand("poziomy")
@@ -43,9 +40,9 @@ public class JobCommand {
         openExperienceInventory(player, inventoriesHolder);
     }
 
-    @Subcommand("test")
+    @Subcommand("losowa")
     public void randomJobTest(Player player) {
-        Job job = JobCreator.createRandomJobForPlayerWithSpecificProfile(player);
+        Job job = JobCreator.createRandomJob(player);
         JobAssigner.assignJobToPlayer(player, job);
     }
 

@@ -38,7 +38,7 @@ public class JobCreator {
         return profiles.unsafeGet(random).job();
     }
 
-    public static Job createRandomJobForPlayerWithSpecificProfile(Player player) {
+    public static Job createRandomJob(Player player) {
         return createRandomJobForPlayerWithSpecificProfile(player, chooseRandomJobProfile());
     }
 
@@ -64,7 +64,7 @@ public class JobCreator {
 
     @NotNull
     private static Tuple<Map<String, Integer>, Integer> calculateRandomObjectives(List<JobObjective> jobObjectives, Experience experience) {
-        int maxPoints = experience.getLevel() * 30;
+        int maxPoints = experience.calculateExperiencePointsForCurrentLevel();
         Map<String, Integer> selectedObjectives = new HashMap<>();
         int currentCost = 0;
 
@@ -72,7 +72,7 @@ public class JobCreator {
         Collections.shuffle(randomObjectives);
         randomObjectives = randomObjectives.size() > MAX_BLOCK_TYPES ? randomObjectives.subList(0, MAX_BLOCK_TYPES) : randomObjectives;
         int notSet = 0;
-        while (currentCost < maxPoints && notSet < 51) {
+        while (currentCost < maxPoints && notSet < 15) {
             Collections.shuffle(randomObjectives);
             String objective = randomObjectives.get(RANDOM.nextInt(randomObjectives.size()));
             Optional<JobObjective> optional = jobObjectives.stream().filter(jobObjective -> jobObjective.getName().equals(objective)).findFirst();
@@ -89,5 +89,4 @@ public class JobCreator {
         }
         return Tuple.of(selectedObjectives, currentCost);
     }
-
 }
